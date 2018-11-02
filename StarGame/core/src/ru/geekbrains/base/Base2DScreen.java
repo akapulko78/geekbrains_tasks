@@ -136,7 +136,7 @@ public class Base2DScreen implements Screen, InputProcessor {
 
     @Override
     public boolean scrolled(int amount) {
-        System.out.println("scrolled");
+        System.out.println("scrolled...");
         return false;
     }
 }
