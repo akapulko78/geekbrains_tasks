@@ -21,9 +21,9 @@ public class Base2DScreen implements Screen, InputProcessor {
     private Rect glBounds; // границы проэкции world - gl
 
     protected Matrix4 worldToGl;
-    protected Matrix3 screenToWorld;
+    protected Matrix3 screenToWorld; //для пересчета событийных логов из PX в GL
 
-    private Vector2 touch;
+    private Vector2 touch; //позиция пользовательского нажатия
 
     @Override
     public void show() {
@@ -43,7 +43,7 @@ public class Base2DScreen implements Screen, InputProcessor {
 
     }
 
-    @Override
+    @Override //получение размера экрана
     public void resize(int width, int height) {
         System.out.println("resize w = " + width + " h = " + height);
         screenBounds.setSize(width, height);
@@ -51,8 +51,8 @@ public class Base2DScreen implements Screen, InputProcessor {
         screenBounds.setBottom(0);
 
         float aspect = width / (float) height;
-        worldBounds.setHeight(1f);
-        worldBounds.setWidth(1f*aspect);
+        worldBounds.setHeight(42f);
+        worldBounds.setWidth(42f * aspect);
         MatrixUtils.calcTransitionMatrix(worldToGl, worldBounds, glBounds);
         batch.setProjectionMatrix(worldToGl);
         MatrixUtils.calcTransitionMatrix(screenToWorld, screenBounds, worldBounds);
@@ -119,7 +119,6 @@ public class Base2DScreen implements Screen, InputProcessor {
 
     public boolean touchUp(Vector2 touch, int pointer) {
         System.out.println("touchUp touch.x = " + touch.x + " touch.y = " + touch.y);
-
         return false;
     }
 

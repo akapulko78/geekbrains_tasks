@@ -11,7 +11,6 @@ import ru.geekbrains.base.Base2DScreen;
 public class MenuScreen extends Base2DScreen {
 
     private Texture img;
-
     private Vector2 pos;
     private Vector2 touch;
     private Vector2 v;
@@ -22,10 +21,11 @@ public class MenuScreen extends Base2DScreen {
     public void show() {
         super.show();
         img = new Texture("badlogic.jpg");
-        pos = new Vector2(0,0);
+        pos = new Vector2(0, 0);
         touch = new Vector2();
         v = new Vector2();
         buf = new Vector2();
+
     }
 
     @Override
@@ -34,13 +34,14 @@ public class MenuScreen extends Base2DScreen {
         Gdx.gl.glClearColor(0.128f, 0.53f, 0.9f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         buf.set(touch);
-        if (buf.sub(pos).len() > v.len()) {
+        if(buf.sub(pos).len()>v.len()){
             pos.add(v);
         } else {
             pos.set(touch);
         }
         batch.begin();
-        batch.draw(img, pos.x, pos.y, 0.5f, 0.5f);
+        batch.draw(img, pos.x, pos.y    , 0.5f, 0.5f);//установка начальной позиции отрисовки
+        // текстуры в системе координа и размера изображения
         batch.end();
 
     }

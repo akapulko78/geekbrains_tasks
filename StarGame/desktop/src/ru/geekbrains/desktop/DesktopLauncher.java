@@ -13,5 +13,6 @@ public class DesktopLauncher {
 		config.width = (int) (config.height * aspect);
 		config.resizable = false;
 		new LwjglApplication(new Star2DGame(), config);
+		//config.backgroundFPS = 500;
 	}
 }
