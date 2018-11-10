@@ -23,6 +23,7 @@ public class MenuScreen extends Base2DScreen {
     private Star[] stars;
 
 
+
     @Override
     public void show() {
         super.show();
@@ -40,7 +41,6 @@ public class MenuScreen extends Base2DScreen {
         super.render(delta);
         update(delta);
         draw();
-
     }
 
     public void update(float delta) {
@@ -59,7 +59,6 @@ public class MenuScreen extends Base2DScreen {
         }
         batch.end();
     }
-
     @Override
     public void resize(Rect worldBounds) {
         background.resize(worldBounds);
@@ -67,6 +66,8 @@ public class MenuScreen extends Base2DScreen {
             stars[i].resize(worldBounds);
         }
     }
+
+
 
     @Override
     public void dispose() {
