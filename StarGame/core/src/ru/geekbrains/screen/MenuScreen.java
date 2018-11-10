@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import ru.geekbrains.base.Base2DScreen;
 import ru.geekbrains.math.Rect;
-import ru.geekbrains.sprite.Background;
+import ru.geekbrains.sprite.BackGround;
 import ru.geekbrains.sprite.Star;
 
 public class MenuScreen extends Base2DScreen {
@@ -17,7 +17,7 @@ public class MenuScreen extends Base2DScreen {
     private static final int STAR_COUNT = 256;
 
     private Texture bgTexture;
-    private Background background;
+    private BackGround background;
 
     private TextureAtlas textureAtlas;
     private Star[] stars;
@@ -28,7 +28,7 @@ public class MenuScreen extends Base2DScreen {
     public void show() {
         super.show();
         bgTexture = new Texture("bg.png");
-        background = new Background(new TextureRegion(bgTexture));
+        background = new BackGround(new TextureRegion(bgTexture));
         textureAtlas = new TextureAtlas("menuAtlas.tpack");
         stars =new Star[STAR_COUNT];
         for (int i = 0; i < stars.length; i++) {
