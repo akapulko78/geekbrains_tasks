@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 
 import ru.geekbrains.base.Ship;
+import ru.geekbrains.base.Sprite;
 import ru.geekbrains.math.Rect;
 import ru.geekbrains.pool.BulletPool;
 
@@ -15,6 +16,7 @@ public class MainShip extends Ship {
     private static final int INVALID_POINTER = -1;
 
     private Vector2 v0 = new Vector2(0.5f, 0);
+
     private boolean pressedLeft;
     private boolean pressedRight;
 
@@ -22,14 +24,14 @@ public class MainShip extends Ship {
     private int rightPointer = INVALID_POINTER;
 
     public MainShip(TextureAtlas atlas, BulletPool bulletPool, Sound shootSound) {
-        super(atlas.findRegion("main_ship"), 1, 2, 2,shootSound);
-        this.atlas = atlas;
+        super(atlas.findRegion("main_ship"), 1, 2, 2, shootSound);
         setHeightProportion(0.15f);
         this.bulletPool = bulletPool;
         this.bulletV.set(0, 0.5f);
         this.bulletHeight = 0.01f;
         this.bulletDamage = 1;
         this.reloadInterval = 0.2f;
+        this.bulletRegion = atlas.findRegion("bulletMainShip");
     }
 
     @Override
@@ -40,11 +42,11 @@ public class MainShip extends Ship {
             shoot();
             reloadTimer = 0f;
         }
-        if(getRight() > worldBounds.getRight()){ //ограничение движения корабля в пределах экрана
+        if (getRight() > worldBounds.getRight()) {
             setRight(worldBounds.getRight());
             stop();
         }
-        if(getLeft() < worldBounds.getLeft()){
+        if (getLeft() < worldBounds.getLeft()) {
             setLeft(worldBounds.getLeft());
             stop();
         }
@@ -146,6 +148,5 @@ public class MainShip extends Ship {
     private void stop() {
         v.setZero();
     }
-
 
 }

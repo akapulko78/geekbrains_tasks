@@ -10,20 +10,29 @@ import ru.geekbrains.pool.BulletPool;
 import ru.geekbrains.sprite.Bullet;
 
 public class Ship extends Sprite {
+
     protected Vector2 v = new Vector2();
-    protected Rect worldBounds;
     protected BulletPool bulletPool;
-    protected TextureAtlas atlas;
+    protected Rect worldBounds;
+
     protected Vector2 bulletV = new Vector2();
     protected float bulletHeight;
     protected int bulletDamage;
+
     protected float reloadInterval;
     protected float reloadTimer;
-    private Sound shootSound;
 
+    protected int hp;
+    protected TextureRegion bulletRegion;
+
+    private Sound shootSound;
 
     public Ship(TextureRegion region, int rows, int cols, int frames, Sound shootSound) {
         super(region, rows, cols, frames);
+        this.shootSound = shootSound;
+    }
+
+    public Ship(Sound shootSound) {
         this.shootSound = shootSound;
     }
 
@@ -34,8 +43,7 @@ public class Ship extends Sprite {
 
     protected void shoot() {
         Bullet bullet = bulletPool.obtain();
-        bullet.set(this, atlas.findRegion("bulletMainShip"), pos,
-                bulletV, bulletHeight, worldBounds, bulletDamage);
+        bullet.set(this, bulletRegion, pos, bulletV, bulletHeight, worldBounds, bulletDamage);
         shootSound.play();
     }
 }
